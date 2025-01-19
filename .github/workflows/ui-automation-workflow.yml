@@ -23,7 +23,7 @@ jobs:
       uses: browser-actions/setup-chrome@v0.0.0
       
     - name: Setup Gradle
-      run: chmod rx gradlew
+      run: chmod +x gradlew
 
     - name: Execute Test
       run: ./gradlew cucumber
