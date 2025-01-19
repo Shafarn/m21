@@ -14,7 +14,7 @@ on:
     branches: [ "master" ]
 
 jobs:
-  Automation Test:
+  run-automation-test:
 
     runs-on: ubuntu-latest
     permissions:
