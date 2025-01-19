@@ -16,6 +16,6 @@ public class CucumberHook extends BaseTest {
     @After
     public void afterTest() {
         System.out.println("Driver Close");
-        driver.quit();
+        driver.close();
     }
 }
