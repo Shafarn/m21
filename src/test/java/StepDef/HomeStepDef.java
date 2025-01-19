@@ -9,10 +9,11 @@ import org.openqa.selenium.By;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class HomeStepDef extends BaseTest {
+    LoginPage loginHelper;
 
     @Before
     public void beforeTest() {
-        LoginPage loginHelper = new LoginPage(driver);
+        loginHelper = new LoginPage(driver);
         loginHelper.loginUser("standard_user", "secret_sauce");
     }
 
