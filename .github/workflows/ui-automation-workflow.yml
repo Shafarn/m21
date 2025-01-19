@@ -36,7 +36,9 @@ jobs:
       
     # setup graldew
     - name: Setup gradlew
-      run: chmod +x gradlew 
+      run: |
+        chmod +x gradlew 
+        ./gradlew build
       
     - name: Build with Gradle Wrapper
       run: ./gradlew test --info
