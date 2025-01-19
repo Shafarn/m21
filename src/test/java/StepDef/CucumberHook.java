@@ -10,6 +10,7 @@ public class CucumberHook extends BaseTest {
     public void beforeTest() {
         System.out.println("Driver Init");
         getDriver();
+        System.out.println("Driver Here: " + driver);
     }
 
     @After
