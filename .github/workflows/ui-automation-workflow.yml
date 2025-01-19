@@ -28,7 +28,7 @@ jobs:
       # You may pin to the exact commit or the version.
       # uses: nanasess/setup-chromedriver@42cc2998329f041de87dc3cfa33a930eacd57eaa
       uses: nanasess/setup-chromedriver@v2.2.2
-       with:
+      with:
         # The chromedriver version to install
         chromedriver-version: 131.0.6778.204
       
