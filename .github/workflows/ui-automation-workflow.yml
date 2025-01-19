@@ -26,7 +26,7 @@ jobs:
       run: chmod +x gradlew
 
     - name: Execute Test
-      run: ./gradlew cucumber
+      run: ./gradlew test
       
     # Configure Gradle for optimal use in GitHub Actions, including caching of downloaded dependencies.
     # See: https://github.com/gradle/actions/blob/main/setup-gradle/README.md
