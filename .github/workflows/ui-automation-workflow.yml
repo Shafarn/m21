@@ -22,8 +22,8 @@ jobs:
     - name: Setup Chrome
       uses: browser-actions/setup-chrome@v1
       
-    - name: Install Chrome Driver
-      uses: jamesmortensen/chromedriver-matcher-action@v1
+    - name: setup-chromedriver
+      uses: nanasess/setup-chromedriver@v2.3.0
       
     - name: Setup Gradle
       run: chmod +x gradlew
