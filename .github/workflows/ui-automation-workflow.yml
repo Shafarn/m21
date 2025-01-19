@@ -19,15 +19,20 @@ jobs:
         java-version: '23'
         distribution: 'temurin'
 
-    # Configure Gradle for optimal use in GitHub Actions, including caching of downloaded dependencies.
-    # See: https://github.com/gradle/actions/blob/main/setup-gradle/README.md
-    - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
-
     - name: Setup Chrome
       # You may pin to the exact commit or the version.
       # uses: browser-actions/setup-chrome@facf10a55b9caf92e0cc749b4f82bf8220989148
       uses: browser-actions/setup-chrome@v1.7.2
+
+    - name: Verify Chrome and ChromeDriver Versions
+      run: |
+        google-chrome-stable --version
+        chromedriver --version
+        
+    # Configure Gradle for optimal use in GitHub Actions, including caching of downloaded dependencies.
+    # See: https://github.com/gradle/actions/blob/main/setup-gradle/README.md
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
       
     # setup graldew
     - name: Setup gradlew
