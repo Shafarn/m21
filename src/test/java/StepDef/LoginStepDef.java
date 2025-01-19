@@ -11,11 +11,10 @@ import org.openqa.selenium.By;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LoginStepDef extends BaseTest {
-    LoginPage loginPage;
+    protected LoginPage loginPage = new LoginPage(driver);
 
     @Given("^user is on login page$")
     public void userIsOnLoginPage() {
-        loginPage = new LoginPage(driver);
         driver.get("https://www.saucedemo.com/");
     }
 

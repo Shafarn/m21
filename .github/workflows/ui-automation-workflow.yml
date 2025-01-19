@@ -5,6 +5,7 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+  workflow_dispatch:
 
 jobs:
   run-automation-test:
@@ -12,33 +13,31 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up JDK 23
-      uses: actions/setup-java@v4
-      with:
-        java-version: '23'
-        distribution: 'temurin'
+      - uses: actions/checkout@v4
 
-    - name: Setup Chrome
-      # You may pin to the exact commit or the version.
-      # uses: browser-actions/setup-chrome@facf10a55b9caf92e0cc749b4f82bf8220989148
-      uses: browser-actions/setup-chrome@v1.7.2
+      - name: Set up JDK 23
+        uses: actions/setup-java@v4
+        with:
+          java-version: '23'
+          distribution: 'temurin'
 
-    - name: Verify Chrome and ChromeDriver Versions
-      run: |
-        google-chrome-stable --version
-        chromedriver --version
-        
-    # Configure Gradle for optimal use in GitHub Actions, including caching of downloaded dependencies.
-    # See: https://github.com/gradle/actions/blob/main/setup-gradle/README.md
-    - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1.7.2
       
-    # setup graldew
-    - name: Setup gradlew
-      run: chmod +x gradlew 
-      
-    - name: Build with Gradle Wrapper
-      run: ./gradlew webTest --info
-          
+      # setup graldew
+      - name: Setup gradlew
+        run: chmod +x gradlew
+
+      - name: Run Test
+        run: ./gradlew webTest
+
+      #Archive test result
+      - name: Archive test result
+        uses: actions/upload-artifact@v4.3.4
+        if: always()
+        with:
+          # Artifact name
+          name: Cucumber Report
+          # A file, directory or wildcard pattern that describes what to upload
+          path: reports
 

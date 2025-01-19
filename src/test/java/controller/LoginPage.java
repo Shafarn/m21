@@ -27,10 +27,10 @@ public class LoginPage {
     }
 
     public void loginUser(String username, String password) {
-        driver.get("https://www.saucedemo.com/");
-        inputUsername(username);
-        inputPassword(password);
-        pressLogin();
+        this.driver.get("https://www.saucedemo.com/");
+        this.inputUsername(username);
+        this.inputPassword(password);
+        this.pressLogin();
     }
 }
 

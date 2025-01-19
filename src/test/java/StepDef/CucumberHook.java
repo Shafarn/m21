@@ -6,7 +6,7 @@ import io.cucumber.java.Before;
 
 public class CucumberHook extends BaseTest {
 
-    @Before
+    @Before(order = 1)
     public void beforeTest() {
         System.out.println("Driver Init");
         getDriver();
