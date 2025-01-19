@@ -22,11 +22,16 @@ jobs:
     - name: Setup Chrome
       uses: browser-actions/setup-chrome@v1
       
+    - name: Setup Chromedriver
+      uses: GabrielBB/setup-chromedriver@v2
+      with:
+        chrome-version: 'latest'
+      
     - name: Setup Gradle
       run: chmod +x gradlew
 
-    - name: Execute Test
-      run: ./gradlew test
+    - name: Execute Tests
+      run: ./gradlew test --info
       
     # Configure Gradle for optimal use in GitHub Actions, including caching of downloaded dependencies.
     # See: https://github.com/gradle/actions/blob/main/setup-gradle/README.md
