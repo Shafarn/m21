@@ -2,17 +2,18 @@ package config;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 
 public class BaseTest {
     protected static WebDriver driver;
 
     protected void getDriver() {
-        ChromeOptions options = new ChromeOptions();
+        EdgeOptions options = new EdgeOptions();
         options.addArguments("--headless");
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver(options);
+        WebDriverManager.edgedriver().setup();
+
+        driver = new EdgeDriver(options);
     }
 
 }
