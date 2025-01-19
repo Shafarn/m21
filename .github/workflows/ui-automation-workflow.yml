@@ -19,13 +19,16 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Setup Chrome
-      uses: browser-actions/setup-chrome@v1
-      
-    - name: setup-chromedriver
-      uses: nanasess/setup-chromedriver@v2.3.0
-      with:
-        chrome-version: 'latest'
+    - name: Install Chrome and Chromedriver
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y wget unzip
+        CHROME_VERSION=$(google-chrome --version | awk '{print $3}')
+        CHROMEDRIVER_VERSION=$(wget -qO- https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION%.*})
+        wget -N https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip -P ~/
+        unzip ~/chromedriver_linux64.zip -d ~/
+        sudo mv -f ~/chromedriver /usr/local/bin/chromedriver
+        sudo chmod 755 /usr/local/bin/chromedriver
       
     - name: Setup Gradle
       run: chmod +x gradlew
