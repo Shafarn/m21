@@ -12,7 +12,7 @@ public class LoginPage {
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
-        System.out.println(driver);
+        System.out.println("Print Driver Here: " + driver);
     }
 
     public void inputUsername(String username) {
