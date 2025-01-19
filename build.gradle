@@ -12,13 +12,38 @@ repositories {
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+
     testImplementation 'org.seleniumhq.selenium:selenium-java:4.27.0'
     testImplementation 'io.github.bonigarcia:webdrivermanager:5.9.0'
+
     testImplementation 'io.cucumber:cucumber-java:7.20.1'
     testImplementation 'io.cucumber:cucumber-junit:7.20.1'
 
 }
 
 test {
-    useJUnit()
+    useJUnitPlatform()
+    systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags")
+}
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+tasks.register('webTest') {
+    dependsOn assemble, testClasses
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = [
+                    '--plugin', 'pretty',
+                    '--plugin', 'html:reports/ui-test-report.html',
+                    '--plugin', 'json:reports/ui-test-report.json',
+                    '--glue', 'StepDef',
+                    'src/test/resources']
+        }
+    }
 }
