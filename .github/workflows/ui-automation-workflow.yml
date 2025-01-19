@@ -19,12 +19,11 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Install Chrome and Chromedriver
-      uses: nanasess/setup-chromedriver@v2
-    - run: |
-        export DISPLAY=:99
-        chromedriver --url-base=/wd/hub &
-        sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
+    - name: Setup Chrome
+      uses: browser-actions/setup-chrome@v1
+      
+    - name: Install Chrome Driver
+      uses: jamesmortensen/chromedriver-matcher-action@v1
       
     - name: Setup Gradle
       run: chmod +x gradlew
