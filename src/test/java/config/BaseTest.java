@@ -12,10 +12,7 @@ public class BaseTest {
         WebDriverManager.chromedriver().setup();
         // Configure Chrome to run in headless mode
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");  // Enable headless mode
-        options.addArguments("--no-sandbox");  // Disable sandbox for Linux
-        options.addArguments("--disable-dev-shm-usage");  // Solve limited resource problems in Docker
-
+        options.addArguments("--headless");
         // Instantiate the WebDriver with the options
         driver = new ChromeDriver(options);
     }
