@@ -32,18 +32,18 @@ configurations {
     }
 }
 
-tasks.register('webTest') {
+tasks.register('webTest', JavaExec) {
     dependsOn assemble, testClasses
-    doLast {
-        javaexec {
-            main = "io.cucumber.core.cli.Main"
-            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
-            args = [
-                    '--plugin', 'pretty',
-                    '--plugin', 'html:reports/ui-test-report.html',
-                    '--plugin', 'json:reports/ui-test-report.json',
-                    '--glue', 'StepDef',
-                    'src/test/resources']
-        }
-    }
+    group = 'verification' // Optional: to organize the task in the verification group
+    description = 'Runs Cucumber UI tests'
+
+    mainClass = 'io.cucumber.core.cli.Main' // Updated syntax for specifying the main class
+    classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+    args = [
+            '--plugin', 'pretty',
+            '--plugin', 'html:reports/ui-test-report.html',
+            '--plugin', 'json:reports/ui-test-report.json',
+            '--glue', 'StepDef',
+            'src/test/resources'
+    ]
 }

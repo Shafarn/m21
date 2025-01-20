@@ -13,25 +13,25 @@ public class HomePOM {
     }
 
     public Boolean isProductExist(String productName) {
-        return driver.findElement(By.xpath("//div[@data-test='inventory-item-name' and contains(text(), '" + productName + "')]")).isDisplayed();
+        return this.driver.findElement(By.xpath("//div[@data-test='inventory-item-name' and contains(text(), '" + productName + "')]")).isDisplayed();
     }
 
     public void clickProduct(String productName) {
-        driver.findElement(By.xpath("//div[@data-test='inventory-item-name' and contains(text(), '" + productName + "')]")).click();
+        this.driver.findElement(By.xpath("//div[@data-test='inventory-item-name' and contains(text(), '" + productName + "')]")).click();
     }
 
     public void isOnProductDetailPage() {
-        Boolean productDetail = driver.findElement(By.id("inventory_item_container")).isDisplayed();
+        Boolean productDetail = this.driver.findElement(By.id("inventory_item_container")).isDisplayed();
 
         assertEquals(true, productDetail);
     }
 
     public void navigatoToItemId(Number productId) {
-        driver.navigate().to("https://www.saucedemo.com/inventory-item.html?id=" + productId);
+        this.driver.navigate().to("https://www.saucedemo.com/inventory-item.html?id=" + productId);
     }
 
     public void isProductNotFound() {
-        String notFound = driver.findElement(By.xpath("//div[@data-test='inventory-item-name']")).getText();
+        String notFound = this.driver.findElement(By.xpath("//div[@data-test='inventory-item-name']")).getText();
 
         assertEquals("ITEM NOT FOUND", notFound);
     }

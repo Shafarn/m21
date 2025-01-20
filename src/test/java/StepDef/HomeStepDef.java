@@ -9,12 +9,11 @@ import io.cucumber.java.en.Then;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class HomeStepDef extends BaseTest {
-    LoginPage loginHelper;
-    HomePOM homeHelper;
+    LoginPage loginHelper = new LoginPage(driver);
+    HomePOM homeHelper = new HomePOM(driver);
 
     @Before
     public void beforeTest() {
-        loginHelper = new LoginPage(driver);
         loginHelper.loginUser("standard_user", "secret_sauce");
     }
 
