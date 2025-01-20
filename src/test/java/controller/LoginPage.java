@@ -3,6 +3,8 @@ package controller;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class LoginPage {
     WebDriver driver;
 
@@ -31,6 +33,22 @@ public class LoginPage {
         this.inputUsername(username);
         this.inputPassword(password);
         this.pressLogin();
+    }
+
+    public void isOnHomepage() {
+        Boolean inventoryList = driver.findElement(By.className("inventory_list")).isDisplayed();
+
+        assertEquals(inventoryList, true);
+    }
+
+    public void isShowingErrorMessage(String errorMsg) {
+        String error = driver.findElement(By.xpath("//h3[@data-test='error']")).getText();
+
+        assertEquals(error, errorMsg);
+    }
+
+    public void goToLoginPage() {
+        this.driver.get("https://www.saucedemo.com/");
     }
 }
 
